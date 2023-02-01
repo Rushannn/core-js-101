@@ -19,7 +19,7 @@
  *   '',  'bb'  => 'bb'
  */
 function concatenateStrings(value1, value2) {
-  return value1 + value2
+  return value1 + value2;
 }
 
 
@@ -35,7 +35,7 @@ function concatenateStrings(value1, value2) {
  *   ''      => 0
  */
 function getStringLength(value) {
-  return value.length
+  return value.length;
 }
 
 /**
@@ -52,7 +52,7 @@ function getStringLength(value) {
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  return `Hello, ${firstName} ${lastName}!`
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -66,7 +66,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  return value.slice(7, -1)
+  return value.slice(7, -1);
 }
 
 
@@ -111,11 +111,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   'cat', 3 => 'catcatcat'
  */
 function repeatString(value, count) {
-  let result = '';
-  for (let i = 0; i < count; i++) {
-    result = result + value;
-  }
-  return result
+  return value.repeat(count);
 }
 
 /**
@@ -131,7 +127,7 @@ function repeatString(value, count) {
  *   'ABABAB','BA' => 'ABAB'
  */
 function removeFirstOccurrences(str, value) {
-  return str.replace(value, '')
+  return str.replace(value, '');
 }
 
 /**
@@ -146,8 +142,8 @@ function removeFirstOccurrences(str, value) {
  *   '<a>' => 'a'
  */
 function unbracketTag(str) {
-  if (str[0] === '<' && str[str.length-1] === '>') {
-    return str.slice(1, -1)
+  if (str[0] === '<' && str[str.length - 1] === '>') {
+    return str.slice(1, -1);
   }
   throw new Error('Invalid string!');
 }
@@ -164,7 +160,7 @@ function unbracketTag(str) {
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
 function convertToUpperCase(str) {
-  return str.toUpperCase()
+  return str.toUpperCase();
 }
 
 /**
@@ -182,8 +178,8 @@ function convertToUpperCase(str) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails( str ) {
-  return str.split(';')
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
@@ -210,11 +206,11 @@ function extractEmails( str ) {
  *
  */
 function getRectangleString(width, height) {
-  let firstRow = '┌'+ '─'.repeat(width - 2) + '┐\n';
-  let bodyRow = '│' + ' '.repeat(width- 2) + '│\n';
-  let body = height-2 ? bodyRow.repeat(height-2) : '';
-  let lastRow = '└' + '─'.repeat(width-2) + '┘\n';
-  return firstRow + body + lastRow
+  const firstRow = `┌${'─'.repeat(width - 2)}┐\n`;
+  const bodyRow = `│${' '.repeat(width - 2)}│\n`;
+  const body = height - 2 ? bodyRow.repeat(height - 2) : '';
+  const lastRow = `└${'─'.repeat(width - 2)}┘\n`;
+  return firstRow + body + lastRow;
 }
 
 
@@ -235,22 +231,22 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  let normalString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  let encodeString = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  const normalString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const encodeString = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
   let result = '';
-  for (let i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i += 1) {
     let change = false;
-    for (let j = 0; j < normalString.length; j++) {
+    for (let j = 0; j < normalString.length; j += 1) {
       if (str[i] === normalString[j]) {
-        result = result + encodeString[j];
+        result += encodeString[j];
         change = true;
       }
     }
     if (!change) {
-      result = result + str[i];
+      result += str[i];
     }
   }
-  return result
+  return result;
 }
 
 /**
