@@ -332,8 +332,9 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const digits = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+  return arr.sort((a, b) => digits.indexOf(a) - digits.indexOf(b));
 }
 
 /**
@@ -348,8 +349,8 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   [ -1, 1, -1, 1 ]      => 0
  *   [ 1, 10, 100, 1000 ]  => 1111
  */
-function getItemsSum(/* arr */) {
-  throw new Error('Not implemented');
+function getItemsSum(arr) {
+  return arr.reduce((total, elem) => total + elem, 0);
 }
 
 /**
@@ -364,8 +365,8 @@ function getItemsSum(/* arr */) {
  *  [ -1, 'false', null, 0 ] => 2
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  return arr.filter((elem) => !elem).length;
 }
 
 /**
@@ -382,8 +383,8 @@ function getFalsyValuesCount(/* arr */) {
  *    [ null, undefined, null ], null => 2
  *    [ true, 0, 1, 'true' ], true => 1
  */
-function findAllOccurrences(/* arr, item */) {
-  throw new Error('Not implemented');
+function findAllOccurrences(arr, item) {
+  return arr.filter((elem) => elem === item).length;
 }
 
 /**
@@ -397,8 +398,8 @@ function findAllOccurrences(/* arr, item */) {
  *    [1, 2, 3, 4, 5]                   => '1,2,3,4,5'
  *    ['rock', 'paper', 'scissors']     => 'rock,paper,scissors'
  */
-function toStringList(/* arr */) {
-  throw new Error('Not implemented');
+function toStringList(arr) {
+  return arr.join();
 }
 
 
@@ -428,8 +429,23 @@ function toStringList(/* arr */) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  function sortByFirstLetter(firstName, secondName) {
+    if (firstName < secondName) {
+      return -1;
+    }
+    if (firstName > secondName) {
+      return 1;
+    }
+    return 1;
+  }
+  return arr.sort((a, b) => sortByFirstLetter(a.country, b.country))
+    .sort((a, b) => {
+      if (a.country === b.country) {
+        return sortByFirstLetter(a.city, b.city);
+      }
+      return 0;
+    });
 }
 
 /**
@@ -450,8 +466,10 @@ function sortCitiesArray(/* arr */) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  return Array(n).fill(0)
+    .map((elem, index) => Array(n).fill(0)
+      .fill(1, index, index + 1));
 }
 
 /**
@@ -467,8 +485,10 @@ function getIdentityMatrix(/* n */) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  const number = Math.abs(start - end) + 1;
+  return Array(number).fill(0)
+    .map((elem, index) => start + index);
 }
 
 /**
@@ -482,8 +502,15 @@ function getIntervalArray(/* start, end */) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  const newArr = [];
+  arr.map((elem) => {
+    if (!newArr.includes(elem)) {
+      newArr.push(elem);
+    }
+    return elem;
+  });
+  return newArr;
 }
 
 /**
@@ -517,6 +544,14 @@ function distinct(/* arr */) {
  *   }
  */
 function group(/* array, keySelector, valueSelector */) {
+  // const arrByKeySelector = [];
+  // arr.map((elem) => {
+  //   if (!arrByKeySelector.includes(elem[keySelector])) {
+  //     arrByKeySelector.push([elem[keySelector],[elem.valueSelector]]);
+  //   }
+  // });
+  // return new Map(Array(1).fill(0).map((elem) => {
+  //   return Array(array.length).fill(0).map()
   throw new Error('Not implemented');
 }
 
